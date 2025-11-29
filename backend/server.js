@@ -3,8 +3,8 @@ const express = require('express');
 const cookieParser = require('cookie-parser');
 const helmet = require('helmet');
 const cors = require('cors');
-const rateLimiter = require('./src/middlewares/rateLimiter');
-const connectDB = require('./src/config/db');
+const rateLimiter = require('./middlewares/rateLimiter.middleware');
+const connectDB = require('./config/db');
 
 const authRoutes = require('./routes/auth.route')
 

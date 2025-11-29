@@ -1,7 +1,7 @@
 const argon2 = require('argon2');
 const { v4: uuidv4 } = require('uuid');
 const speakeasy = require('speakeasy');
-const User = require('../models/User');
+const User = require('../models/user.model');
 const { signAccessToken, signRefreshToken } = require('../utils/jwt');
 const { sendMail } = require('../utils/mailer');
 
