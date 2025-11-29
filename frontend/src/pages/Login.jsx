@@ -7,7 +7,6 @@ export default function Login() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [msg, setMsg] = useState('');
-    const [mfaUserId, setMfaUserId] = useState(null);
     const navigate = useNavigate();
     const { loginWithAccess } = useAuth();
 
@@ -15,14 +14,16 @@ export default function Login() {
         e.preventDefault();
         try {
             const res = await api.post('/auth/login', { email, password, device: 'web' });
+
             if (res.data.mfaRequired) {
-                setMfaUserId(res.data.userId);
-                setMsg('MFA required - enter code');
                 navigate('/mfa/verify', { state: { userId: res.data.userId } });
+                setMsg('MFA required - enter code');
                 return;
             }
-            const access = res.data.access;
-            loginWithAccess(access, res.data.user);
+
+            localStorage.setItem('access_token', res.data.access);
+            loginWithAccess(res.data.access, res.data.user);
+
             navigate('/dashboard');
         } catch (err) {
             setMsg(err.response?.data?.error || err.message);

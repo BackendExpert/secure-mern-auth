@@ -6,6 +6,7 @@ import MFASetup from './pages/MFASetup';
 import MFAVerify from './pages/MFAVerify';
 import Dashboard from './pages/Dashboard';
 import ProtectedRoute from './components/ProtectedRoute';
+import VerifyEmail from './pages/VerifyEmail';
 
 export default function App() {
   return (
@@ -19,6 +20,7 @@ export default function App() {
       <Routes>
         <Route path="/" element={<div>Welcome</div>} />
         <Route path="/register" element={<Register />} />
+        <Route path="/verify-email" element={<VerifyEmail />} />
         <Route path="/login" element={<Login />} />
         <Route path="/mfa/setup" element={<MFASetup />} />
         <Route path="/mfa/verify" element={<MFAVerify />} />

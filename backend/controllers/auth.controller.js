@@ -60,7 +60,7 @@ exports.mfaVerifyLogin = async (req, res) => {
 
 exports.setupMfa = async (req, res) => {
     try {
-        const userId = req.body.userId; // in prod use auth middleware
+        const userId = req.user.id; 
         const secret = await authService.setupMfa(userId);
         res.json(secret);
     } catch (err) {
